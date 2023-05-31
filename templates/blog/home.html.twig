@@ -3,7 +3,6 @@
 {% block title %} Blog T-Store {% endblock %}
 
 {% block body %}
-    <p>Number of articles: {{ articles | length }}</p>
     <div class="row row-cols-1 row-cols-md-4 g-4">
     {% for article in articles |slice(0, 100) %}
 
