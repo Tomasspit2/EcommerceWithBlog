@@ -10,6 +10,9 @@
             <p>{{ article.author.fullName }}</p>
             {% if article.updatedAt is empty%}
             <p>{{ article.createdAt | date('d/m/y') }}</p>
+                {% for category in article.categories %}
+                    <p><i><b>{{ category.name }}</b> {{ category.articles | length }} articles with this category.</i></p>
+                {% endfor %}
             {% else %}
             <p>Updated at: {{ article.updatedAt | date('d/m/y H:i') }}.</p>
             {% endif %}
