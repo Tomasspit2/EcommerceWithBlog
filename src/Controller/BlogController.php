@@ -4,22 +4,22 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
-use App\Repository\CategoryRepository;
+use App\Services\CategoryService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BlogController extends AbstractController
 {
+    public function __construct(CategoryService $categoryService)
+    {
+        $categoryService->updateSession();
+    }
+    
     #[Route('/', name: 'app_home')]
-    public function home(ArticleRepository $articleRepository, CategoryRepository $categoryRepository, Request $request): Response
+    public function home(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findAll();
-        $categories = $categoryRepository->findAll();
-
-        $session = $request->getSession();
-        $session->set('categories', $categories);
 
         return $this->render('blog/home.html.twig', [
             'articles' => $articles,
