@@ -11,8 +11,8 @@
                 <div class="card h-100">
                     <img src="{{ article.image_url }}" class="card-img-top" style="height: 300px; width: 100%" alt="{{ article.title }}">
                     <div class="card-body">
-                        <a href="/show/{{ article.id }}"><h5 class="card-title">{{ article.title }}</h5>
-                            <p class="card-text"><img src="{{ article.author.profile.picture }}" height="50" width="50" style="border-radius: 100px; border: 1px solid rgba(29,29,29,0.04);" alt="">{{ article.author.fullName }}</p>
+                        <a href="/show/{{ article.slug }}"><h5 class="card-title">{{ article.title }}</h5>
+                            <p class="card-text"><img src="{{ article.author.profile.picture }}" height="50" width="50" style="border-radius: 100px; border: 1px solid rgba(29,29,29,0.04); margin-right: 10px;" alt="">{{ article.author.fullName }}</p>
                             <p class="card-text"><small>Created {{ article.fromNow }}. </small></p>
                             <p class="card-text">{{ article.description }}</p></a> <br>
                         <p class="card-text">{% for category in article.categories %}

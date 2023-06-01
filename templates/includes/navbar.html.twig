@@ -13,7 +13,7 @@
                     <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Categories</a>
                     <ul class="dropdown-menu">
                                 {% for category in categories %}
-                                <li><a class="dropdown-item" href="/category/{{ category.id }}">{{ category.name }}</a></li>
+                                <li><a class="dropdown-item" href="/category/{{ category.id }}">{{ category.name }} ({{ category.articles | length }} articles)</a></li>
                                 {% endfor %}
                     </ul>
                 </li>
