@@ -197,4 +197,16 @@ class Article
 
         return $this;
     }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->image_url;
+    }
+
+    public function setImageUrl(string $image_url): self
+    {
+        $this->image_url = $image_url;
+
+        return $this;
+    }
 }
