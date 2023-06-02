@@ -24,7 +24,7 @@ class BlogFixtures extends Fixture
             $user->setFullName($faker->full_name());
             $user->setEmail($faker->Email());
             $user->setPassword('password');
-            $user->setCreatedAt($faker->dateTimeImmutable());
+            $user->setCreated_at($faker->dateTimeImmutable());
 
             $address = new Address();
             $address->setStreet($faker->streetAddress());

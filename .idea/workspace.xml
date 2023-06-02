@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3ea1b8e-b7a2-4853-a437-5549e780a627" name="Changes" comment="Auto created files">
+    <list default="true" id="a3ea1b8e-b7a2-4853-a437-5549e780a627" name="Changes" comment="Created the User Entity and added the securities to it.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20230602150718.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Article.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230601093909.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20230602213405.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="UserCreation" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -231,7 +229,7 @@
       <updated>1685519503101</updated>
       <workItem from="1685519505099" duration="3449000" />
       <workItem from="1685533953435" duration="1629000" />
-      <workItem from="1685739893135" duration="2264000" />
+      <workItem from="1685739893135" duration="6311000" />
     </task>
     <task id="LOCAL-00001" summary="Created navbar and added to base">
       <created>1685534072469</created>
@@ -282,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685535403347</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Created the User Entity and added the securities to it.">
+      <created>1685742556369</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1685742556369</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,6 +300,7 @@
     <MESSAGE value="Updated the main page of the blog" />
     <MESSAGE value="Created the CSS for the navbar" />
     <MESSAGE value="Auto created files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Auto created files" />
+    <MESSAGE value="Created the User Entity and added the securities to it." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created the User Entity and added the securities to it." />
   </component>
 </project>
