@@ -17,6 +17,15 @@
     </head>
     <body>
         {% include 'includes/navbar.html.twig' %}
+
+        {% for contact, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ contact }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         {% block body %}{% endblock %}
         {% include 'includes/footer.html.twig' %}
     {% block javascript %}{% endblock %}

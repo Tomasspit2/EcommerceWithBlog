@@ -33,4 +33,9 @@ class BlogController extends AbstractController
             'article' => $article,
             ]);
     }
+    #[Route('/about', name: 'app_about')]
+    public function showAbout(): Response
+    {
+        return $this->render('about.html.twig');
+    }
 }

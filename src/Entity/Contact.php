@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -14,15 +16,20 @@ class Contact
     #[ORM\Column]
     private ?int $id = null;
 
+    #[NotBlank(message: 'Please enter your full name!')]
     #[ORM\Column(length: 255)]
     private ?string $fullName = null;
 
+    #[Assert\Email(message: 'A valid email address is necessary!')]
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[NotBlank(message: 'Please enter your subject!')]
+    #[Assert\Length(min: 10, max: 255, minMessage: 'This field must contain at least {{ limit }} characters.', maxMessage: 'This field must not contain more then {{ limit }} characters.')]
     #[ORM\Column(length: 255)]
     private ?string $subject = null;
 
+    #[NotBlank(message: 'Please enter your message!')]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
 
@@ -30,7 +37,7 @@ class Contact
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
-    private ?bool $messageRead = null;
+    private ?bool $messageRead = false;
 
     public function getId(): ?int
     {
