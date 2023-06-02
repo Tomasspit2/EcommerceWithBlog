@@ -7,13 +7,14 @@
         <div class="collapse navbar-collapse bg-dark" id="main_nav">
             <ul class="navbar-nav bg-dark">
                 <li class="nav-item active"> <a class="nav-link" href="/">Home </a> </li>
-                <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact"> Contact </a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact"> About </a></li>
                 <li class="nav-item"><a class="nav-link" href="/"> Articles </a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Categories</a>
                     <ul class="dropdown-menu">
-                                {% for category in categories %}
-                                <li><a class="dropdown-item" href="/category/{{ category.id }}">{{ category.name }} ({{ category.articles | length }} articles)</a></li>
+                                {% for category in app.session.get('categories') %}
+                                <li><a class="dropdown-item" href="/category/{{ category.slug }}">{{ category.name }} ({{ category.articles | length }} articles)</a></li>
                                 {% endfor %}
                     </ul>
                 </li>
