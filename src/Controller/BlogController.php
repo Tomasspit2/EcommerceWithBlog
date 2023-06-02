@@ -22,7 +22,7 @@ class BlogController extends AbstractController
             ]);
     }
 
-    #[Route('/show/{id<^[0-9]+$>}', name: 'app_show')]
+    #[Route('/show/{slug}', name: 'app_show')]
     public function showArticle(Article $article, CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->findAll();

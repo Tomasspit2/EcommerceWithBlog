@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -19,6 +20,10 @@ class Article
 
     #[ORM\Column(length: 60)]
     private ?string $title = null;
+
+    #[ORM\Column(length: 255, nullable: false)]
+    private ?string $slug = null;
+
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
@@ -72,8 +77,27 @@ class Article
     {
         $this->title = $title;
 
+        $this->setSlug((new Slugify())->slugify($this->title));
+
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string|null $slug
+     */
+    public function setSlug(?string $slug): void
+    {
+        $this->slug = $slug;
+    }
+
 
     public function getContent(): ?string
     {
