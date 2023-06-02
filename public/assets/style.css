@@ -1,4 +1,12 @@
 @import "css/HomePage.css";
 @import "css/navbar.css";
 @import "css/footer.css";
+@import "css/ContactForm.css";
+@import "css/Buttons.css";
 
+
+body    {
+    min-height: 100vh!important;
+    display: flex!important;
+    flex-direction: column!important;
+}
