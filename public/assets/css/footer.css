@@ -1,0 +1,17 @@
+.footer-link {
+ color: #fecea8!important;
+}
+
+.social:hover {
+ color: #4A4A4A!important;
+}
+
+.btn .btn-outline-light .btn-floating .m-1 {
+ color: #fecea8!important;
+}
+
+.btn-outline-light {
+ --bs-btn-border-color: #fecea8!important;
+ --bs-btn-hover-bg: #fecea8!important;
+ --bs-btn-hover-border-color: #fecea8!important;
+}

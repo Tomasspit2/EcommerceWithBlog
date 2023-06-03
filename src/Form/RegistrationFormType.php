@@ -23,29 +23,26 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('fullName', TextType::class, [
                 'label' => 'Full name:',
+                'label_attr' => ['class' => 'form-label'],
                 "attr" => [
-                    'placeholder' => "Your Full Name.",
+                    'placeholder' => "Your full name.",
                     "class" => 'form-control',
                 ],
-                "row_attr" => [
-                    "class" => 'form-outline mb-4'
-                ]
+                "required" => true
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email Address:',
+                'label_attr' => ['class' => 'form-label'],
                 "attr" => [
                     'placeholder' => "Your email-address.",
                     "class" => 'form-control',
-                ],
-                "row_attr" => [
-                    "class" => 'form-outline mb-4'
                 ],
                 "required" => true
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'attr' => ['class'=>'form-check-input me-2'],
-                "row_attr" => ['class' => 'form-check d-flex justify-content-center mb-4'],
+                'label_attr' => ['class' => 'form-label'],
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
@@ -62,9 +59,7 @@ class RegistrationFormType extends AbstractType
                 'first_options' => ['label' => 'Password',
                     'attr' => ['placeholder' => 'Your password',
                         'class' => 'form-control'],
-                    "row_attr" => [
-                        "class" => 'form-outline mb-4'
-                    ],
+                    'label_attr' => ['class' => 'form-label'],
                     'constraints' => [
                         new NotBlank([
                             'message' => 'Please enter a password',
@@ -80,9 +75,7 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => 'Repeat Password',
                     'attr' => ['placeholder' => 'Repeat your password',
                         'class' => 'form-control'],
-                    "row_attr" => [
-                        "class" => 'form-outline mb-4'
-                    ],
+                    'label_attr' => ['class' => 'form-label'],
                     'constraints' => [
                         new NotBlank([
                             'message' => 'Please enter a password',
@@ -100,9 +93,7 @@ class RegistrationFormType extends AbstractType
 
             ->add('Register', SubmitType::class, ['label' => 'Sign up.',
                 "attr" => ["class" => 'button'],
-                "row_attr" => [
-                    "class" => 'button-div'
-                ]])
+                ])
         ;
     }
 

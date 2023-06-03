@@ -4,9 +4,9 @@
 @import "css/ContactForm.css";
 @import "css/Buttons.css";
 
-
 body    {
     min-height: 100vh!important;
     display: flex!important;
     flex-direction: column!important;
+    background-color:  #4A4A4A!important;
 }
