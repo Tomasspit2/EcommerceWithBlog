@@ -10,3 +10,11 @@
     color: #fecea8!important;
 }
 
+.login  {
+display: flex;
+align-items: center;
+}
+
+.logout a   {
+    margin-left: 10px;
+}

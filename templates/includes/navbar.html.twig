@@ -20,5 +20,12 @@
                 </li>
             </ul>
         </div> <!-- navbar-collapse.// -->
+        {% if app.user %}
+            <div class="login logout">
+                Welcome {{ app.user.userIdentifier }} <a class="button ml-2" href="{{ path('app_logout') }}">Logout</a>
+            </div>
+            {% else %}
+                <a class="button ml-2" href="{{ path('app_login') }}">Login</a>
+        {% endif %}
     </div> <!-- container-fluid.// -->
 </nav>
