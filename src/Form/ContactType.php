@@ -22,18 +22,12 @@ class ContactType extends AbstractType
                     'placeholder' => "Your Full Name.",
                     "class" => 'form-control',
                 ],
-                "row_attr" => [
-                    "class" => 'form-outline mb-4'
-                ],
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email Address:',
                 "attr" => [
                     'placeholder' => "Your email-address.",
                     "class" => 'form-control',
-                ],
-                "row_attr" => [
-                    "class" => 'form-outline mb-4'
                 ],
                 "required" => true
             ])
@@ -43,9 +37,6 @@ class ContactType extends AbstractType
             'placeholder' => "The reason for contacting us.",
             "class" => 'form-control',
         ],
-        "row_attr" => [
-            "class" => 'form-outline mb-4'
-        ],
                 "required" => true
     ])
             ->add('message', TextareaType::class, [
@@ -54,16 +45,11 @@ class ContactType extends AbstractType
                     'placeholder' => "Write your message here.",
                     "class" => 'form-control',
                 ],
-                "row_attr" => [
-                    "class" => 'form-outline mb-4'
-                ],
                 "required" => true
             ])
-            ->add('Send_Message', SubmitType::class, ['label' => 'Send Message',
+            ->add('send', SubmitType::class, ['label' => 'Send Message',
                 "attr" => ["class" => 'button'],
-                "row_attr" => [
-                    "class" => 'button-div'
-                ]])
+                ])
         ;
     }
 

@@ -3,36 +3,15 @@
 {% block title %}Category{% endblock %}
 
 {% block body %}
-    <h1>Category</h1>
+    <div>
+    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style="color:#ffeada;">Articles with the category: {{ category.name }}</p>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Name</th>
-                <td>{{ category.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ category.description }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h2>All articles in this category:</h2>
 <div class="row row-cols-1 row-cols-md-4 g-4">
     {% for article in category.articles %}
 
 
     <div class="col">
-        <div class="card h-100">
+        <div class="card h-100" style="background-color: #fecea8!important; color: #4A4A4A!important;">
             <img src="{{ article.image_url }}" class="card-img-top" style="height: 300px; width: 100%" alt="{{ article.title }}">
             <div class="card-body">
                 <a href="/show/{{ article.slug }}"><h5 class="card-title">{{ article.title }}</h5>
@@ -45,5 +24,5 @@
 
     {% endfor %}
 </div>
-    <a href="/">Back to the homepage</a>
+    </div>
 {% endblock %}
