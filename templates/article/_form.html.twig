@@ -1,4 +1,60 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<section class="vh-90 mt-3 mb-3" style="background-color: #4A4A4A; color:#fecea8!important">
+    <div class="container h-100 d-flex justify-content-between">
+        <div class="mx-1 mx-md-4" style="width:60%">
+            {{ form_start(form) }}
+            <div class="d-flex flex-row align-items-center mb-4">
+                <div class="form-outline flex-fill mb-0">
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.description) }}
+                </div>
+            </div>
+            <div class="d-flex flex-row align-items-center mb-4">
+                <div class="form-outline flex-fill mb-0">
+                    {{ form_row(form.imageFile) }}
+                </div>
+            </div>
+            <div class="d-flex flex-row align-items-center mb-4">
+                <div class="form-outline flex-fill mb-0">
+                    {{ form_row(form.categories) }}
+                </div>
+            </div>
+            <div class="d-flex flex-row align-items-center mb-4">
+                <div class="form-outline flex-fill mb-0">
+                    {{ form_row(form.content) }}
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                {{ form_row(form.Add) }}
+            </div>
+        </div>
+        <div class="col-md-10 col-lg-6 col-xl-7 d-flex justify-content-end order-1 order-lg-2 " style="max-width: 500px; margin-left: 20px;">
+            <img id="uploadedPhoto" src="/assets/images/logos/Logo-T-Store-Square.png" class="uploadedPhoto img-fluid" alt="Sample image" style="height: fit-content!important;">
+        </div>
+    </div>
+</section>
+
+<script>
+    const fileInput = document.getElementById('article_imageFile');
+    const existingImage = document.getElementById('uploadedPhoto');
+
+    // Add event listener for file input change
+    fileInput.addEventListener('change', function(event) {
+        // Get the selected file
+        const selectedFile = event.target.files[0];
+
+        // Check if a file was selected
+        if (selectedFile) {
+            // Create a FileReader object
+            const reader = new FileReader();
+
+            // Set up the FileReader onload event
+            reader.onload = function() {
+                // Set the existing image source with the FileReader result
+                existingImage.src = reader.result;
+            };
+
+            // Read the selected file as a data URL
+            reader.readAsDataURL(selectedFile);
+        }
+    });
+</script>

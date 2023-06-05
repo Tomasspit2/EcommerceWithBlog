@@ -1,0 +1,22 @@
+#article_title    {
+    width: 100%!important;
+    margin-bottom: 10px!important;
+}
+
+#article_description  {
+    width: 100%!important;
+}
+
+#article_imageFile  {
+    margin-left: 15px!important;
+}
+
+#article_content  {
+    width: 100%;
+    min-height: 500px;
+}
+
+#article_categories  {
+    width: 50% !important;
+    margin-left: 10px!important;
+}
