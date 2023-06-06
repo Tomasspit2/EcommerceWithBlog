@@ -31,6 +31,13 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $image_url = null;
 
+    private ?string $imageFile = null;
+
+    public function setImageFile(?string $imageFile): void
+    {
+        $this->imageFile = $imageFile;
+    }
+
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
@@ -81,6 +88,18 @@ class Article
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getImageFile(): ?string
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param string|null $imageFile
+     */
 
     /**
      * @return string|null
