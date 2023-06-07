@@ -26,4 +26,21 @@ class UploadFile extends AbstractController
 
         return '/assets/images/articles/'.$filename;
     }
+
+    public function updateFile($file, $old_file)
+    {
+        if ($file !== null) {
+            $file_url = $this->saveFile($file);
+
+            return $file_url;
+        }
+
+        try {
+            unlink($this->getParameter('static_dir').$old_file);
+        } catch (\Throwable)    {
+
+        }
+
+        return $old_file;
+    }
 }

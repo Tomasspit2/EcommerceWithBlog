@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Services\UploadFile;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,15 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/account/articles')]
 class ArticleController extends AbstractController
 {
+
+    private $uploadFile;
+    private $em;
+
+    public function __construct(UploadFile $uploadFile, EntityManagerInterface $em)
+    {
+        $this->uploadFile = $uploadFile;
+        $this->em = $em;
+    }
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
@@ -24,7 +34,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ArticleRepository $articleRepository, UploadFile $uploadFile): Response
+    public function new(Request $request, ArticleRepository $articleRepository): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -35,12 +45,14 @@ class ArticleController extends AbstractController
 
             $file = $form["imageFile"]->getData();
 
-            $file_url = $uploadFile->saveFile($file);
+            $file_url = $this->uploadFile->saveFile($file);
 
             $article->setImage_url($file_url);
             $article->setAuthor($this->getUser());
 
-            $articleRepository->save($article, true);
+
+            $this->em->persist($article);
+            $this->em->flush();
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -66,7 +78,17 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $articleRepository->save($article, true);
+            $article->setUpdatedAt(new \DateTimeImmutable());
+
+            $file = $form["imageFile"]->getData();
+
+            if ($file) {
+                $file_url = $this->uploadFile->updateFile($file, $article->getImage_url());
+                $article->setImage_url($file_url);
+            }
+
+            $this->em->persist($article);
+            $this->em->flush();
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }

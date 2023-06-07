@@ -6,14 +6,19 @@
         <div class="articleHeader d-flex flex-column align-items-center" style="background-color: #e0e0e0">
             <h2 class="mt-2 ">{{ article.title }}</h2>
             <p>{{ article.author.fullName }}</p>
+            {% if article.author.profile is defined %}
+                <p class="card-text"><img src="{{ article.author.profile.picture }}" height="50" width="50" style="border-radius: 100px; border: 1px solid rgba(29,29,29,0.04); margin-right: 10px;" alt="">{{ article.author.fullName }}</p>
+            {% else %}
+                <p class="card-text"><img src="/assets/images/Profile/defaultProfilePicture.jfif" height="50" width="50" style="border-radius: 100px; border: 1px solid rgba(29,29,29,0.04); margin-right: 10px;" alt="">{{ article.author.fullName }}</p>
+            {% endif %}
             {% if article.updatedAt is empty%}
             <p>{{ article.createdAt | date('d/m/y') }}</p>
-                {% for category in article.categories %}
-                    <p><i><b>{{ category.name }}</b> {{ category.articles | length }} articles with this category.</i></p>
-                {% endfor %}
             {% else %}
             <p>Updated at: {{ article.updatedAt | date('d/m/y H:i') }}.</p>
             {% endif %}
+            {% for category in article.categories %}
+                <p><i><b>{{ category.name }}</b> {{ category.articles | length }} articles with this category.</i></p>
+            {% endfor %}
         </div>
 
         <div class="articleContent">
