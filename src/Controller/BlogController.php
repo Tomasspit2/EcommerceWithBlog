@@ -20,7 +20,7 @@ class BlogController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function home(ArticleService $articleService): Response
     {
-        $articles = $articleService->getPaginatedArticles(null);
+        $articles = $articleService->getPaginatedArticles();
 
         return $this->render('blog/home.html.twig', [
             'articles' => $articles,

@@ -17,13 +17,13 @@ class ArticleService
     {
     }
 
-    public function getPaginatedArticles(Category $category)
+    public function getPaginatedArticles(?Category $category = null)
     {
 
         $request = $this->requestStack->getMainRequest();
 
         $page = $request->query->getInt('page', 1);
-        $limit = 16;
+        $limit = 15;
 
         $articlesQuery = $this->articleRepository->findForPagination($category);
 
