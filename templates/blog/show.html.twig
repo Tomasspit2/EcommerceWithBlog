@@ -3,7 +3,7 @@
 {% block body %}
         <div><img src="{{ article.image_url }}" width="100%" alt="{{ article.title }}"></div>
 
-        <div class="articleHeader d-flex flex-column align-items-center" style="background-color: #e0e0e0">
+        <div class="articleHeader d-flex flex-column align-items-center" style="background-color: #4A4A4A; color: #fecea8">
             <h2 class="mt-2 ">{{ article.title }}</h2>
             <p>{{ article.author.fullName }}</p>
             {% if article.author.profile is defined %}
@@ -21,7 +21,7 @@
             {% endfor %}
         </div>
 
-        <div class="articleContent">
+        <div class="articleContent" style="background-color: #ffeada; color: #444444">
             {{ article.content|raw }}
         </div>
 

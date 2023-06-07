@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use App\Services\ArticleService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,10 +42,11 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/{slug}', name: 'app_category_show', methods: ['GET'])]
-    public function show(Category $category): Response
+    public function show(Category $category, ArticleService $articleService): Response
     {
         return $this->render('category/show.html.twig', [
             'category' => $category,
+            'articles' => $articleService->getPaginatedArticles($category),
         ]);
     }
 

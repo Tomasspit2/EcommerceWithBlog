@@ -39,19 +39,17 @@ class ArticleRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-    public function findForPagination(?Category $category = null)
-    {
+        public function findForPagination(Category $category)
+        {
         $qb = $this->createQueryBuilder('a')
             ->orderBy('a.createdAt', 'DESC');
 
-        if ($category)  {
-            $qb->leftJoin('a.categories', 'C')->where($qb->expr()->eq('c.id', ':categoryId'))
-                ->setParameter('categoryId', $category->getId());
+        if ($category) {
+            $qb->andWhere(':category MEMBER OF a.categories')
+                ->setParameter('category', $category);
         }
 
         return $qb->getQuery();
-
     }
 
 //    /**
