@@ -18,3 +18,21 @@ align-items: center;
 .logout a   {
     margin-left: 10px;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+.dropdown-menu {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    --bs-dropdown-link-hover-bg: #444444!important;
+
+}
+
+.dropdown-toggle:focus+.dropdown-menu {
+    display: block;
+}
