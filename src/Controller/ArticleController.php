@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Services\UploadFile;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,10 +17,12 @@ class ArticleController extends AbstractController
 {
 
     private $uploadFile;
+    private $em;
 
-    public function __construct(UploadFile $uploadFile)
+    public function __construct(UploadFile $uploadFile, EntityManagerInterface $em)
     {
         $this->uploadFile = $uploadFile;
+        $this->em = $em;
     }
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): Response
@@ -47,7 +50,13 @@ class ArticleController extends AbstractController
             $article->setImage_url($file_url);
             $article->setAuthor($this->getUser());
 
-            $articleRepository->save($article, true);
+            foreach ($article->getCategories()->getValues() as $category)   {
+                $category->addArticle($article);
+                $this->em->persist($category);
+            }
+
+            $this->em->persist($article);
+            $this->em->flush();
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -82,8 +91,13 @@ class ArticleController extends AbstractController
                 $article->setImage_url($file_url);
             }
 
+            foreach ($article->getCategories()->getValues() as $category)   {
+                $category->addArticle($article);
+                $this->em->persist($category);
+            }
 
-            $articleRepository->save($article, true);
+            $this->em->persist($article);
+            $this->em->flush();
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }

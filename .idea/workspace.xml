@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3ea1b8e-b7a2-4853-a437-5549e780a627" name="Changes" comment="Added a Default Profile Picture for users that haven't uploaded a photo yet.">
-      <change afterPath="$PROJECT_DIR$/public/assets/images/articles/iznzzhin7z6sgbrvienvniyy87q7zr.SustainableFashion.jpg" afterDir="false" />
+    <list default="true" id="a3ea1b8e-b7a2-4853-a437-5549e780a627" name="Changes" comment="Updated the edit part of the article.&#10;Photo is now nullable, and keeps the same photo selected  if no new photo is selected.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/UploadFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/UploadFile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -243,7 +242,7 @@
       <workItem from="1685533953435" duration="1629000" />
       <workItem from="1685739893135" duration="6806000" />
       <workItem from="1685819699605" duration="14416000" />
-      <workItem from="1686088753471" duration="14173000" />
+      <workItem from="1686088753471" duration="15061000" />
     </task>
     <task id="LOCAL-00001" summary="Created navbar and added to base">
       <created>1685534072469</created>
@@ -364,7 +363,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686143756215</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Updated the edit part of the article.&#10;Photo is now nullable, and keeps the same photo selected  if no new photo is selected.">
+      <created>1686143827036</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1686143827036</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,6 +393,7 @@
     <MESSAGE value="Passwords loaded from fixtures are now hashed" />
     <MESSAGE value="Articles uploaded now show the added styling" />
     <MESSAGE value="Added a Default Profile Picture for users that haven't uploaded a photo yet." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a Default Profile Picture for users that haven't uploaded a photo yet." />
+    <MESSAGE value="Updated the edit part of the article.&#10;Photo is now nullable, and keeps the same photo selected  if no new photo is selected." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the edit part of the article.&#10;Photo is now nullable, and keeps the same photo selected  if no new photo is selected." />
   </component>
 </project>
