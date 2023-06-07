@@ -1,0 +1,14 @@
+.pagination {
+    --bs-pagination-border-color: #fecea8!important;
+    --bs-pagination-bg: #ffeada!important;
+    --bs-pagination-hover-border-color: #F06B0E!important;
+    --bs-pagination-focus-bg: #fecea8!important;
+    --bs-pagination-hover-bg: #fecea8!important;
+    --bs-pagination-active-color: #444444!important;
+    --bs-pagination-active-bg: #fecea8!important;
+    --bs-pagination-active-border-color: #F06B0E!important;
+    --bs-pagination-disabled-bg: #ffeada!important;
+    --bs-pagination-disabled-border-color: #fecea8!important;
+    --bs-pagination-focus-color: #444444!important;
+    --bs-pagination-focus-box-shadow: unset!important;
+}

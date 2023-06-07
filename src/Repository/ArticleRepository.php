@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,20 @@ class ArticleRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findForPagination(?Category $category = null)
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC');
+
+        if ($category)  {
+            $qb->leftJoin('a.categories', 'C')->where($qb->expr()->eq('c.id', ':categoryId'))
+                ->setParameter('categoryId', $category->getId());
+        }
+
+        return $qb->getQuery();
+
     }
 
 //    /**
