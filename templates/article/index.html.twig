@@ -3,45 +3,39 @@
 {% block title %}Article index{% endblock %}
 
 {% block body %}
-    <h1>Article index</h1>
+    <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-right: 0!important;">
+        {% for article in articles |slice(0, 100) %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Slug</th>
-                <th>Content</th>
-                <th>Image_url</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.slug }}</td>
-                <td>{{ article.content }}</td>
-                <td>{{ article.imageUrl }}</td>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.description }}</td>
-                <td>
-                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
+
+            <div class="col">
+                <div class="card h-100" style="background-color: #fecea8!important; color: #4A4A4A!important;">
+                    <img src="{{ article.image_url }}" class="card-img-top" style="height: 300px; width: 100%" alt="{{ article.title }}">
+                    <div class="card-body">
+                        <a href="/show/{{ article.slug }}"><h5 class="card-title">{{ article.title }}</h5>
+                            {% if article.author.profile is defined %}
+                                <p class="card-text"><img src="{{ article.author.profile.picture }}" height="50" width="50" style="border-radius: 100px; border: 1px solid rgba(29,29,29,0.04); margin-right: 10px;" alt="">{{ article.author.fullName }}</p>
+                            {% else %}
+                                <p class="card-text"><img src="/assets/images/Profile/defaultProfilePicture.jfif" height="50" width="50" style="border-radius: 100px; border: 1px solid rgba(29,29,29,0.04); margin-right: 10px;" alt="">{{ article.author.fullName }}</p>
+                            {% endif %}
+                            <p class="card-text"><small>Created {{ article.fromNow }}. </small></p>
+                            <p class="card-text">{{ article.description }}</p></a> <br>
+                        <p class="card-text">{% for category in article.categories %}
+                                <i><b>{{ category.name }}</b>
+                                <br>{{ category.articles | length }} articles with this category.</i>
+                            </p> {% endfor %}
+                    </div>
+                    <div class="Edit_Delete d-flex justify-content-evenly">
+                        <a class="button" style="max-width: 90px; background-color: #ff5449;" href="{{ path('app_article_edit', {'id': article.id}) }}">Edit</a>
+                        <a class="button" style="max-width: 100px; " href="{{ path('app_article_delete', {'id': article.id}) }}">Delete</a>
+                    </div>
+                </div>
+
+            </div>
+
+
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
 
-    <a href="{{ path('app_article_new') }}">Create new</a>
+
+
 {% endblock %}
