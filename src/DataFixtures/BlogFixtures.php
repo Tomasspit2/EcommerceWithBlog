@@ -51,12 +51,26 @@ class BlogFixtures extends Fixture
             $manager->persist($profile);
         }
 
-        $categories = [];
 
-        for ($i = 0; $i < 10; $i++) {
+        $categoryList = ['Fashion Trends', 'Style Guides', 'Celebrity Fashion', 'Wardrobe Essentials', 'Fashion Tips and Hacks', 'Outfit of the Day (OOTD)', 'Seasonal Collections', 'Fashion Events and News', 'Sustainable Fashion', 'Fashion Inspiration'];
+        $categoryDescription = [
+            'This category can cover the latest fashion trends, runway looks, and seasonal styles, helping readers stay up-to-date with the latest fashion trends.',
+            'Style guides offer tips and advice on how to put together stylish outfits for different occasions, body types, or personal preferences.',
+            'This category focuses on celebrity fashion, providing insights into the outfits worn by celebrities, red carpet events, and how to recreate their looks.',
+            'Wardrobe essentials articles highlight must-have clothing items that form the foundation of a versatile and functional wardrobe, such as classic white shirts, little black dresses, or denim jackets.',
+            'This category shares useful tips, tricks, and hacks related to clothing care, storage, accessorizing, or styling techniques to help readers optimize their fashion choices.',
+            'Seasonal collections showcase the latest clothing lines and collections available on the website, featuring new arrivals, trends, and outfit ideas specific to each season.',
+            'OOTD posts showcase complete outfits put together by the blog\'s writers or submitted by readers, providing inspiration for various styles and occasions.',
+            'This category covers fashion events, news, and updates from the fashion industry, including fashion weeks, designer collaborations, brand launches, and industry insights.',
+            'With a growing emphasis on eco-friendly practices, this category focuses on sustainable fashion, featuring articles about ethical clothing brands, eco-friendly materials, and tips for building a sustainable wardrobe.',
+            'This category provides inspiration for fashion-forward readers, featuring lookbooks, street style photography, and fashion icons\' profiles, helping readers explore new styles and express their unique fashion sense.',
+        ];
+        $categories = []; // Initialize the $categories array
+
+        for ($i = 0; $i < count($categoryList); $i++) {
             $category = new Category();
-            $category->setName($faker->word());
-            $category->setDescription($faker->description(30));
+            $category->setName($categoryList[$i]);
+            $category->setDescription($categoryDescription[$i]);
             $category->setImageUrl($faker->image());
             $category->setCreatedAt($faker->dateTimeImmutable());
 
@@ -77,8 +91,6 @@ class BlogFixtures extends Fixture
                 $randomIndex = rand(0, count($categories) - 1);
                 $article->addCategory($categories[$randomIndex]);
             }
-
-                $categories[] = $category;
                 $manager->persist($article);
             }
 
