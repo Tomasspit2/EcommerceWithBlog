@@ -10,9 +10,16 @@ use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use EsperoSoft\Faker\Faker;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class BlogFixtures extends Fixture
 {
+    private $passwordHasher;
+   public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+       $this->passwordHasher = $passwordHasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
         $faker = new Faker();
@@ -23,7 +30,7 @@ class BlogFixtures extends Fixture
             $user = new User();
             $user->setFullName($faker->full_name());
             $user->setEmail($faker->Email());
-            $user->setPassword('password');
+            $user->setPassword($this->passwordHasher->hashPassword($user,'password'));
             $user->setCreated_at($faker->dateTimeImmutable());
 
             $address = new Address();
@@ -65,7 +72,7 @@ class BlogFixtures extends Fixture
             'With a growing emphasis on eco-friendly practices, this category focuses on sustainable fashion, featuring articles about ethical clothing brands, eco-friendly materials, and tips for building a sustainable wardrobe.',
             'This category provides inspiration for fashion-forward readers, featuring lookbooks, street style photography, and fashion icons\' profiles, helping readers explore new styles and express their unique fashion sense.',
         ];
-        $categories = []; // Initialize the $categories array
+        $categories = [];
 
         for ($i = 0; $i < count($categoryList); $i++) {
             $category = new Category();
