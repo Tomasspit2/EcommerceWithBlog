@@ -16,6 +16,7 @@
         "espero-soft/dateformat": "dev-master",
         "espero-soft/faker": "dev-master",
         "exercise/htmlpurifier-bundle": "*",
+        "knplabs/knp-paginator-bundle": "^6.2",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.21",
         "select2/select2": "^4.0",

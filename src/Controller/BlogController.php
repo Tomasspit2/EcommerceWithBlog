@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Services\ArticleService;
 use App\Services\CategoryService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,9 +18,9 @@ class BlogController extends AbstractController
     }
     
     #[Route('/', name: 'app_home')]
-    public function home(ArticleRepository $articleRepository): Response
+    public function home(ArticleService $articleService): Response
     {
-        $articles = $articleRepository->findAll();
+        $articles = $articleService->getPaginatedArticles();
 
         return $this->render('blog/home.html.twig', [
             'articles' => $articles,

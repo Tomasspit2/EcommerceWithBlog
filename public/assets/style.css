@@ -5,6 +5,7 @@
 @import "css/Buttons.css";
 @import "css/Login.css";
 @import "css/AddArticle.css";
+@import "css/Pagination.css";
 
 body    {
     min-height: 100vh!important;
