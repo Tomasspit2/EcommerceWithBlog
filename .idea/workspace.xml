@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3ea1b8e-b7a2-4853-a437-5549e780a627" name="Changes" comment="Finished adding a new article. Form is fully functionel. &#10;Added CK-editor. Needs a relook, adds the &lt;p&gt; into the final page, instead of creating html code. I need to check on the DOC to see how to change this.&#10;Added a JS library to add styling to the category selection.&#10;&#10;Added a Service for uploading files. For the moment only images are treated.&#10;&#10;Added a parameter in the services.yaml file, for the assets/images/articles route.">
-      <change afterPath="$PROJECT_DIR$/public/assets/images/articles/psinizq7eA77i8boosiieesAvgeev7.WildSports Red SVG.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/UploadFile.php" afterDir="false" />
+    <list default="true" id="a3ea1b8e-b7a2-4853-a437-5549e780a627" name="Changes" comment="Articles uploaded now show the added styling">
+      <change afterPath="$PROJECT_DIR$/public/assets/images/articles/fAosAhhhin67eqz7vzhgzz5ip8jbb5.SustainableFashion.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/AddArticle.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/AddArticle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ArticleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArticleType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/blog/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blog/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,6 +194,8 @@
       <path value="$PROJECT_DIR$/vendor/amphp/amp" />
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/select2/select2" />
+      <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/vendor/exercise/htmlpurifier-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="2QY9AEhyrDpu1b3AYytJT4PEktB" />
@@ -206,26 +203,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sdubo/Wildcodeschool/Symfony/wild-series&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/sdubo/Wildcodeschool/Symfony/wild-series/src/DataFixtures/ProgramFixtures.php",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\sdubo\Wildcodeschool\Udemy\EcommerceWithBlog" />
@@ -249,7 +246,7 @@
       <workItem from="1685533953435" duration="1629000" />
       <workItem from="1685739893135" duration="6806000" />
       <workItem from="1685819699605" duration="14416000" />
-      <workItem from="1686088753471" duration="1590000" />
+      <workItem from="1686088753471" duration="10294000" />
     </task>
     <task id="LOCAL-00001" summary="Created navbar and added to base">
       <created>1685534072469</created>
@@ -335,7 +332,28 @@
       <option name="project" value="LOCAL" />
       <updated>1686001748794</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Finished adding a new article. Form is fully functionel. &#10;Added CK-editor. Needs a relook, adds the &lt;p&gt; into the final page, instead of creating html code. I need to check on the DOC to see how to change this.&#10;Added a JS library to add styling to the category selection.&#10;&#10;Added a Service for uploading files. For the moment only images are treated.&#10;&#10;Added a parameter in the services.yaml file, for the assets/images/articles route.">
+      <created>1686090409758</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686090409758</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added real categories to the fixture. They now have real names and real description.">
+      <created>1686128643204</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1686128643204</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Passwords loaded from fixtures are now hashed">
+      <created>1686129805625</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686129805626</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,6 +372,9 @@
     <MESSAGE value="fixed bug in register" />
     <MESSAGE value="Created the page to add an article. Added JS to show the selected photo on the page as a preview" />
     <MESSAGE value="Finished adding a new article. Form is fully functionel. &#10;Added CK-editor. Needs a relook, adds the &lt;p&gt; into the final page, instead of creating html code. I need to check on the DOC to see how to change this.&#10;Added a JS library to add styling to the category selection.&#10;&#10;Added a Service for uploading files. For the moment only images are treated.&#10;&#10;Added a parameter in the services.yaml file, for the assets/images/articles route." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished adding a new article. Form is fully functionel. &#10;Added CK-editor. Needs a relook, adds the &lt;p&gt; into the final page, instead of creating html code. I need to check on the DOC to see how to change this.&#10;Added a JS library to add styling to the category selection.&#10;&#10;Added a Service for uploading files. For the moment only images are treated.&#10;&#10;Added a parameter in the services.yaml file, for the assets/images/articles route." />
+    <MESSAGE value="Added real categories to the fixture. They now have real names and real description." />
+    <MESSAGE value="Passwords loaded from fixtures are now hashed" />
+    <MESSAGE value="Articles uploaded now show the added styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Articles uploaded now show the added styling" />
   </component>
 </project>
