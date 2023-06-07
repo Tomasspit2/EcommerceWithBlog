@@ -50,10 +50,6 @@ class ArticleController extends AbstractController
             $article->setImage_url($file_url);
             $article->setAuthor($this->getUser());
 
-            foreach ($article->getCategories()->getValues() as $category)   {
-                $category->addArticle($article);
-                $this->em->persist($category);
-            }
 
             $this->em->persist($article);
             $this->em->flush();
@@ -89,11 +85,6 @@ class ArticleController extends AbstractController
             if ($file) {
                 $file_url = $this->uploadFile->updateFile($file, $article->getImage_url());
                 $article->setImage_url($file_url);
-            }
-
-            foreach ($article->getCategories()->getValues() as $category)   {
-                $category->addArticle($article);
-                $this->em->persist($category);
             }
 
             $this->em->persist($article);

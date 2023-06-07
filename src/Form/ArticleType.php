@@ -28,6 +28,7 @@ class ArticleType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'multiple' => true,
+                'by_reference' => false,
                 'attr'  => [
                     'class' => 'categoryChoices'
                 ]
