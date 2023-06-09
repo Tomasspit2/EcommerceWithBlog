@@ -19,6 +19,8 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+        $user->setCreated_at(new \DateTimeImmutable());
+        $user->setProfile_photo('assets/images/Profile/defaultProfilePicture.jfif');
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
@@ -29,11 +31,8 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $user->setCreated_at(new \DateTimeImmutable());
-
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('app_home');
         }

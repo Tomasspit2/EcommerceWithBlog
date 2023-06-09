@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Article{% endblock %}
+{% block title %}Edit Profile{% endblock %}
 
 {% block body %}
-    <h1 class="d-flex justify-content-center" style="color: #fecea8">Edit Article</h1>
+    <h1 class="d-flex justify-content-center" style="color: #fecea8">Edit Profile</h1>
 
     <section class="vh-90 mt-3 mb-3" style="background-color: #4A4A4A; color:#fecea8!important">
         <div class="container h-100 d-flex justify-content-between">
@@ -11,41 +11,26 @@
                 {{ form_start(form) }}
                 <div class="d-flex flex-row align-items-center mb-4">
                     <div class="form-outline flex-fill mb-0">
-                        {{ form_row(form.title) }}
-                        {{ form_row(form.description) }}
+                        {{ form_row(form.full_name) }}
                     </div>
                 </div>
                 <div class="d-flex flex-row align-items-center mb-4">
                     <div class="form-outline flex-fill mb-0">
-                        {% if article.id is null %}
-                            {{ form_row(form.imageFile) }}
-                        {% else %}
-                            {{ form_row(form.imageFile, {'required': false}) }}
-                        {% endif %}
+                            {{ form_row(form.profilePhotoUrl, {'required': false}) }}
                     </div>
                 </div>
                 <div class="d-flex flex-row align-items-center mb-4">
                     <div class="form-outline flex-fill mb-0">
-                        {{ form_row(form.categories) }}
-                    </div>
-                </div>
-                <div class="d-flex flex-row align-items-center mb-4">
-                    <div class="form-outline flex-fill mb-0">
-                        {{ form_row(form.content) }}
+                        {{ form_row(form.email) }}
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    {{ form_row(form.Add) }}
+                    {{ form_row(form.edit) }}
                 </div>
             </div>
             {{ form_end(form) }}
             <div class="col-md-10 col-lg-6 col-xl-7 d-flex justify-content-end order-1 order-lg-2 " style="max-width: 500px; margin-left: 20px;">
-                {% if article.image_url %}
-                    <img src="{{ article.image_url }}" class="uploadedPhoto img-fluid" style="height: fit-content!important;" alt="Article Image">
-                {% else %}
-                    <img id="uploadedPhoto" src="/assets/images/logos/Logo-T-Store-Square.png" class="uploadedPhoto img-fluid" alt="Sample image" style="height: fit-content!important;">
-                {% endif %}
-
+                    <img id="uploadedPhoto" src="{{ user.profile_photo }}" class="uploadedPhoto img-fluid" style="height: fit-content!important;" alt="Article Image">
             </div>
         </div>
     </section>
@@ -56,16 +41,7 @@
 
 {% block javascript %}
 <script>
-    $(document).ready(function() {
-    $('.categoryChoices').select2()
-});
-
-    CKEDITOR.replace( 'article_content' );
-
-</script>
-
-<script>
-    const fileInput = document.getElementById('article_imageFile');
+    const fileInput = document.getElementById('user_profilePhotoUrl');
     const existingImage = document.getElementById('uploadedPhoto');
 
     // Add event listener for file input change
