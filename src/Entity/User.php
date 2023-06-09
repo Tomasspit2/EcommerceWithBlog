@@ -24,14 +24,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 60)]
     private ?string $full_name = null;
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
-    private Collection $addresses;
 
-    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class)]
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class, cascade: ['persist', 'remove'])]
     private Collection $articles;
 
-    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
-    private ?Profile $profile = null;
 
     #[ORM\Column]
     private array $roles = [];
@@ -45,24 +41,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $profile_photo = null;
+
+    private ?string $ProfilePhotoUrl = null;
+
     public function __construct()
     {
-        $this->addresses = new ArrayCollection();
         $this->articles = new ArrayCollection();
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getProfilePhotoUrl(): ?string
+    {
+        return $this->ProfilePhotoUrl;
+    }
+
+    /**
+     * @param string|null $ProfilePhotoUrl
+     */
+    public function setProfilePhotoUrl(?string $ProfilePhotoUrl): void
+    {
+        $this->ProfilePhotoUrl = $ProfilePhotoUrl;
     }
     public function getId(): ?int
     {
         return $this->id;
     }
-    public function addAddress(Address $address): self
-    {
-        if (!$this->addresses->contains($address)) {
-            $this->addresses->add($address);
-            $address->setUser($this);
-        }
 
-        return $this;
-    }
     public function getFullName(): ?string
     {
         return $this->full_name;
@@ -74,22 +82,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    public function getAddresses(): Collection
-{
-    return $this->addresses;
-}
 
-    public function removeAddress(Address $address): self
-    {
-        if ($this->addresses->removeElement($address)) {
-            // set the owning side to null (unless already changed)
-            if ($address->getUser() === $this) {
-                $address->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 
         public function getCreated_at(): ?\DateTimeImmutable
     {
@@ -130,23 +123,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $article->setAuthor(null);
             }
         }
-
-        return $this;
-    }
-
-        public function getProfile(): ?Profile
-    {
-        return $this->profile;
-    }
-
-        public function setProfile(Profile $profile): self
-    {
-        // set the owning side of the relation if necessary
-        if ($profile->getUser() !== $this) {
-            $profile->setUser($this);
-        }
-
-        $this->profile = $profile;
 
         return $this;
     }
@@ -214,5 +190,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getProfile_photo(): ?string
+    {
+        return $this->profile_photo;
+    }
+
+    public function setProfile_photo(?string $profile_photo): self
+    {
+        $this->profile_photo = $profile_photo;
+
+        return $this;
     }
 }

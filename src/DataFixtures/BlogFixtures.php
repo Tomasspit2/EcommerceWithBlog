@@ -33,29 +33,10 @@ class BlogFixtures extends Fixture
             $user->setPassword($this->passwordHasher->hashPassword($user,'password'));
             $user->setCreated_at($faker->dateTimeImmutable());
 
-            $address = new Address();
-            $address->setStreet($faker->streetAddress());
-            $address->setCity($faker->city());
-            $address->setPostalCode($faker->postcode());
-            $address->setCreatedAt($faker->dateTimeImmutable());
-            $address->setCountry($faker->country());
-
-            $profile = new Profile();
-            $profile->setCoverPicture($faker->image());
-            $profile->setPicture($faker->image());
-            $profile->setDescription($faker->description(60));
-            $profile->setCreatedAt($faker->dateTimeImmutable());
-
-
-            $user->addAddress($address);
-            $user->setProfile($profile);
-
 
             $users[] = $user;
 
             $manager->persist($user);
-            $manager->persist($address);
-            $manager->persist($profile);
         }
 
 

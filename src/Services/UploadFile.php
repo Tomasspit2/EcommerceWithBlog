@@ -30,13 +30,35 @@ class UploadFile extends AbstractController
     public function updateFile($file, $old_file)
     {
         if ($file !== null) {
-            $file_url = $this->saveFile($file);
-
-            return $file_url;
+            return $this->saveFile($file);
         }
 
         try {
             unlink($this->getParameter('static_dir').$old_file);
+        } catch (\Throwable)    {
+
+        }
+
+        return $old_file;
+    }
+
+    public function saveProfilePicture($file)
+    {
+        $extension = $file->getClientOriginalExtension();
+        $filename = $this->generate_name(30) . "." . $extension;
+        $file->move($this->getParameter('profile_picture_dir'), $filename);
+
+        return '/assets/images/Profile/' . $filename;
+    }
+
+    public function updateProfilePicture($file, $old_file)
+    {
+        if ($file !== null) {
+            return $this->saveProfilePicture($file);
+        }
+
+        try {
+            unlink($this->getParameter('/assets/images/Profile/').$old_file);
         } catch (\Throwable)    {
 
         }
