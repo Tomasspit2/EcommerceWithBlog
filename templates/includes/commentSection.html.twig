@@ -3,7 +3,7 @@
         <div class="col-md-12">
 
             <div class="card card-comments">
-                <div class="card-body card-comments-body">
+                <div class="card-body card-comments-body" style="background-color: #fecea8">
                     <h4 class="card-title">Recent Comments</h4>
                     <h6 class="card-subtitle">Latest Comments section by users</h6> </div>
 
@@ -17,7 +17,7 @@
                         </div>
                     {% else %}
                     {% for comment in article.comments %}
-                    <div class="d-flex flex-row comment-row">
+                    <div class="d-flex flex-row comment-row" style="background-color: #ffeada">
                         <div class="p-2"><span class="round"><img src="{{ comment.user.profile_photo }}" alt="{{ comment.user.fullName }}" width="50"></span></div>
                         <div class="comment-text w-100">
                             <h5>{{ comment.user.fullName }}</h5>
@@ -36,9 +36,9 @@
                     {% endif %}
                 </div>
 
-                <div class="bg-light p-2 d-flex">
+                <div class="p-2 d-flex" style="background-color: #fecea8">
                     <div class="d-flex align-items-center" style="margin-right: 15px">
-                        <img class="rounded-circle" src="/assets/images/Profile/{{ app.user.profile_Photo }}" width="100" height="100" alt="">
+                        <img class="rounded-circle" src="/assets/images/Profile/{{ app.user.profile_photo }}" width="100" height="100" alt="">
                     </div>
 
                     {{ form_start(form) }}
