@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Comment;
+use App\Form\CommentType;
+use App\Repository\CommentRepository;
 use App\Services\ArticleService;
 use App\Services\CategoryService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -27,12 +31,29 @@ class BlogController extends AbstractController
     }
 
     #[Route('/show/{slug}', name: 'app_show')]
-    public function showArticle(Article $article): Response
+    public function showArticle(Article $article, Request $request, CommentRepository $commentRepository): Response
     {
-        return $this->render('blog/show.html.twig', [
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setCreatedAt(new \DateTimeImmutable());
+            $comment->setUser($this->getUser());
+            $comment->setArticle($article);
+            $commentRepository->save($comment, true);
+
+            $comment = new Comment();
+            $form = $this->createForm(CommentType::class, $comment);
+        }
+
+        return $this->renderForm('blog/show.html.twig', [
             'article' => $article,
-            ]);
+            'comment' => $comment,
+            'form' => $form->createView(),
+        ]);
     }
+
     #[Route('/about', name: 'app_about')]
     public function showAbout(): Response
     {

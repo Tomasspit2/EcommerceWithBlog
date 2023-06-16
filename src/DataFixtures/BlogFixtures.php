@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -47,7 +48,7 @@ class BlogFixtures extends Fixture
             $admins[] = $admin;
         }
 
-
+            $users = [];
             for ($i = 0; $i < 100; $i++) {
                 $user = new User();
                 $user->setFullName($faker->full_name());
@@ -57,6 +58,9 @@ class BlogFixtures extends Fixture
                 $user->setProfile_photo($faker->image());
 
                 $manager->persist($user);
+
+                $users[] = $user;
+
             }
 
             $categoryList = ['Fashion Trends', 'Style Guides', 'Celebrity Fashion', 'Wardrobe Essentials', 'Fashion Tips and Hacks', 'Outfit of the Day (OOTD)', 'Seasonal Collections', 'Fashion Events and News', 'Sustainable Fashion', 'Fashion Inspiration'];
@@ -85,6 +89,8 @@ class BlogFixtures extends Fixture
                 $manager->persist($category);
             }
 
+            $articles = [];
+
             for ($i = 0; $i < 300; $i++) {
                 $article = new Article();
                 $article->setTitle($faker->title(30));
@@ -98,10 +104,22 @@ class BlogFixtures extends Fixture
                     $randomIndex = rand(0, count($categories) - 1);
                     $article->addCategory($categories[$randomIndex]);
                 }
+
+                $articles[] = $article;
                 $manager->persist($article);
             }
 
+            for ($i = 0; $i < 100; $i++)    {
+                $comment  = new Comment();
+                $comment
+                    ->setCreatedAt($faker->dateTimeImmutable())
+                    ->setMessage($faker->text())
+                    ->setArticle($articles[rand(0, count($articles) - 1)])
+                    ->setUser($users[rand(0, count($users) - 1)]);
 
+                $manager->persist($comment);
+
+            }
             $manager->flush();
         }
 }
