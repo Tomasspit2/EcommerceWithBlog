@@ -5,20 +5,20 @@
             <div class="card card-comments">
                 <div class="card-body card-comments-body" style="background-color: #fecea8">
                     <h4 class="card-title">Recent Comments</h4>
-                    <h6 class="card-subtitle">Latest Comments section by users</h6> </div>
+                    <h6 class="card-subtitle">{{ comments | length }} comments</h6> </div>
 
                 <div class="comment-widgets m-b-20">
 
-                    {% if article.comments is empty %}
+                    {% if comments is empty %}
                         <div class="d-flex flex-row comment-row">
                             <div>
                                 <p>No comments yet!</p>
                             </div>
                         </div>
                     {% else %}
-                    {% for comment in article.comments %}
+                    {% for comment in comments %}
                     <div class="d-flex flex-row comment-row" style="background-color: #ffeada">
-                        <div class="p-2"><span class="round"><img src="{{ comment.user.profile_photo }}" alt="{{ comment.user.fullName }}" width="50"></span></div>
+                        <div class="p-2"><span class="round"><img src="/assets/images/Profile/{{ comment.user.profile_photo }}" alt="{{ comment.user.fullName }}" width="50" height="50" style="object-fit: cover;"></span></div>
                         <div class="comment-text w-100">
                             <h5>{{ comment.user.fullName }}</h5>
                             <div class="comment-footer">
@@ -33,12 +33,21 @@
                         </div>
                     </div>
                     {% endfor %}
+
+                        <div class="container mt-4" >
+                            <div class="row">
+                                <div class="d-flex align-items-center justify-content-center" >
+                                    {{ knp_pagination_render(comments) }}
+                                </div>
+                            </div>
+                        </div>
+
                     {% endif %}
                 </div>
 
                 <div class="p-2 d-flex" style="background-color: #fecea8">
                     <div class="d-flex align-items-center" style="margin-right: 15px">
-                        <img class="rounded-circle" src="/assets/images/Profile/{{ app.user.profile_photo }}" width="100" height="100" alt="">
+                        <img class="rounded-circle" src="/assets/images/Profile/{{ app.user.profile_photo }}" width="100" height="100" style="object-fit: cover;" alt="">
                     </div>
 
                     {{ form_start(form) }}
