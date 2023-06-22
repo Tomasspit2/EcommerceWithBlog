@@ -30,13 +30,13 @@
             </div>
             {{ form_end(form) }}
             <div class="col-md-10 col-lg-6 col-xl-7 d-flex justify-content-end order-1 order-lg-2 " style="max-width: 500px; margin-left: 20px;">
-                    <img id="uploadedPhoto" src="{{ user.profile_photo }}" class="uploadedPhoto img-fluid" style="height: fit-content!important;" alt="Article Image">
+                    <img id="uploadedPhoto" src="/assets/images/Profile/{{ user.profile_photo }}" class="uploadedPhoto img-fluid" style="height: fit-content!important;" alt="Article Image">
             </div>
         </div>
     </section>
 
 
-    <a href="{{ path('app_article_index') }}">back to list</a>
+    <a href="{{ path('app_user_show') }}">back to my profile</a>
 {% endblock %}
 
 {% block javascript %}

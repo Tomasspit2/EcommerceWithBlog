@@ -8,7 +8,7 @@
             <ul class="navbar-nav bg-dark">
                 <li class="nav-item active"> <a class="nav-link" href="/">Home </a> </li>
                 <li class="nav-item"><a class="nav-link" href="/contact"> Contact </a></li>
-                <li class="nav-item"><a class="nav-link" href="/about"> About </a></li>
+                <li class="nav-item"><a class="nav-link" href="https://www.tomasspit-cv.online"> About </a></li>
                 <li class="nav-item"><a class="nav-link" href="/"> Articles </a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Categories</a>
@@ -30,7 +30,8 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/account/user/{{ app.user.id }}">My Account</a>
-                        <a class="dropdown-item" href="/account/articles">My articles</a>
+                        {% if is_granted('ROLE_ADMIN') %}<a class="dropdown-item" href="/account/articles">My articles</a>{% endif %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}<a class="dropdown-item" href="/admin">Dashboard</a>{% endif %}
                         <a class="dropdown-item" href="/logout">Log Out</a>
                     </div>
                 </div>
