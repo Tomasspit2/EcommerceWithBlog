@@ -40,7 +40,7 @@ class ContactType extends AbstractType
                 "required" => true
     ])
             ->add('message', TextareaType::class, [
-                'label' => 'Your message to us:',
+                'label' => 'Your message:',
                 "attr" => [
                     'placeholder' => "Write your message here.",
                     "class" => 'form-control',

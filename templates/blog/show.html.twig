@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-        <div><img src="{{ article.image_url }}" width="100%" alt="{{ article.title }}"></div>
+        <div><img src="{{ article.image_url }}" width="100%" height="600px" alt="{{ article.title }}"></div>
 
-        <div class="articleHeader d-flex flex-column align-items-center" style="background-color: #4A4A4A; color: #fecea8">
+        <div class="articleHeader d-flex flex-column align-items-center" style="background-color: #4A4A4A; color: #fecea8; object-fit: cover; object-position: center">
             <h2 class="mt-2 ">{{ article.title }}</h2>
             <p>{{ article.author.fullName }}</p>
             {% if article.author.profile is defined %}
@@ -23,8 +23,8 @@
 
 
 
-        <div class="articleContent" style="background-color: #ffeada; color: #4A4A4A">
-            {{ article.content|raw }}
+        <div class="articleContent" style="background-color: #ffeada; color: #4A4A4A;">
+            <div style="margin: 50px">{{ article.content|raw }}</div>
         </div>
 
     {% include 'includes/commentSection.html.twig' %}

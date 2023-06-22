@@ -12,10 +12,10 @@
 
     <div class="col">
         <div class="card h-100" style="background-color: #ffeada!important; color: #4A4A4A!important;">
-            <img src="{{ article.image_url }}" class="card-img-top" style="height: 300px; width: 100%" alt="{{ article.title }}">
+            <img src="{{ article.image_url }}" class="card-img-top" style="height: 300px; width: 100%; object-fit: cover" alt="{{ article.title }}">
             <div class="card-body">
                 <a href="/show/{{ article.slug }}"><h5 class="card-title">{{ article.title }}</h5>
-                    <p class="card-text"><img src="{{ article.author.profile.picture }}" height="50" width="50" style="border-radius: 100px; border: 1px solid rgba(29,29,29,0.04); margin-right: 10px;" alt="">{{ article.author.fullName }}</p>
+                    <p class="card-text"><img src="/assets/images/Profile/{{ article.author.profile_Photo }}" height="50" width="50" style="border-radius: 100px; border: 1px solid rgba(29,29,29,0.04); margin-right: 10px;" alt="">{{ article.author.fullName }}</p>
                     <p class="card-text"><small>Created {{ article.fromNow }}. </small></p>
                     <p class="card-text">{{ article.description }}</p></a> <br>
             </div>
