@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -30,6 +31,7 @@ class BlogFixtures extends Fixture
         $superAdmin->setPassword($this->passwordHasher->hashPassword($superAdmin, 'ADMIN'));
         $superAdmin->setCreated_at($faker->dateTimeImmutable());
         $superAdmin->setRoles(['ROLE_SUPER_ADMIN']);
+        $superAdmin->setProfile_photo('defaultProfilePicture.jfif');
 
         $manager->persist($superAdmin);
 
@@ -40,23 +42,26 @@ class BlogFixtures extends Fixture
             $admin->setPassword($this->passwordHasher->hashPassword($admin, 'password'));
             $admin->setCreated_at($faker->dateTimeImmutable());
             $admin->setRoles(['ROLE_ADMIN']);
-            $admin->setProfile_photo($faker->image());
+            $admin->setProfile_photo('defaultProfilePicture.jfif');
 
             $manager->persist($admin);
 
             $admins[] = $admin;
         }
 
-
+            $users = [];
             for ($i = 0; $i < 100; $i++) {
                 $user = new User();
                 $user->setFullName($faker->full_name());
                 $user->setEmail($faker->Email());
                 $user->setPassword($this->passwordHasher->hashPassword($user, 'password'));
                 $user->setCreated_at($faker->dateTimeImmutable());
-                $user->setProfile_photo($faker->image());
+                $user->setProfile_photo('defaultProfilePicture.jfif');
 
                 $manager->persist($user);
+
+                $users[] = $user;
+
             }
 
             $categoryList = ['Fashion Trends', 'Style Guides', 'Celebrity Fashion', 'Wardrobe Essentials', 'Fashion Tips and Hacks', 'Outfit of the Day (OOTD)', 'Seasonal Collections', 'Fashion Events and News', 'Sustainable Fashion', 'Fashion Inspiration'];
@@ -85,7 +90,9 @@ class BlogFixtures extends Fixture
                 $manager->persist($category);
             }
 
-            for ($i = 0; $i < 300; $i++) {
+            $articles = [];
+
+            for ($i = 0; $i < 100; $i++) {
                 $article = new Article();
                 $article->setTitle($faker->title(30));
                 $article->setImage_url($faker->image());
@@ -98,10 +105,22 @@ class BlogFixtures extends Fixture
                     $randomIndex = rand(0, count($categories) - 1);
                     $article->addCategory($categories[$randomIndex]);
                 }
+
+                $articles[] = $article;
                 $manager->persist($article);
             }
 
+            for ($i = 0; $i < 100; $i++)    {
+                $comment  = new Comment();
+                $comment
+                    ->setCreatedAt($faker->dateTimeImmutable())
+                    ->setMessage($faker->text())
+                    ->setArticle($articles[rand(0, count($articles) - 1)])
+                    ->setUser($users[rand(0, count($users) - 1)]);
 
+                $manager->persist($comment);
+
+            }
             $manager->flush();
         }
 }

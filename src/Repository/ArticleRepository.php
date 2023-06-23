@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**

@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
     <div class="container-fluid">
         <a class="navbar-brand" href="/"><img src="/assets/images/logos/Logo-T-Store-Square-No-Slogan.png" height="60px" alt=""></a>
+        <h1 style="margin-right: 10px; color: #ff847c;">T-Store</h1>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -8,7 +9,7 @@
             <ul class="navbar-nav bg-dark">
                 <li class="nav-item active"> <a class="nav-link" href="/">Home </a> </li>
                 <li class="nav-item"><a class="nav-link" href="/contact"> Contact </a></li>
-                <li class="nav-item"><a class="nav-link" href="/about"> About </a></li>
+                <li class="nav-item"><a class="nav-link" href="https://www.tomasspit-cv.online"> About </a></li>
                 <li class="nav-item"><a class="nav-link" href="/"> Articles </a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Categories</a>
@@ -30,12 +31,13 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/account/user/{{ app.user.id }}">My Account</a>
-                        <a class="dropdown-item" href="/account/articles">My articles</a>
+                        {% if is_granted('ROLE_ADMIN') %}<a class="dropdown-item" href="/account/articles">My articles</a>{% endif %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}<a class="dropdown-item" href="/admin">Dashboard</a>{% endif %}
                         <a class="dropdown-item" href="/logout">Log Out</a>
                     </div>
                 </div>
             {% else %}
-                <a href="/login"><i class="fas fa-user fa-lg" style="color: #fecea8; margin-right: 10px"></i></a>
+                <a style="color: #fecea8!important;" href="/login">Login<i class="fas fa-user fa-lg" style="color: #fecea8; margin:0 10px"></i></a>
                 <a class="button ml-2" href="{{ path('app_register') }}">Sign up!</a>
             {% endif %}
         </div>

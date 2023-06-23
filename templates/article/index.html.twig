@@ -3,13 +3,18 @@
 {% block title %}Article index{% endblock %}
 
 {% block body %}
-    <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-right: 0!important;">
+    <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-right: 0!important; padding-left: 10px">
+        <div class="col d-flex justify-content-center w-100">
+            <a class="button" href="/account/articles/new" style="width: 200px; display: flex;
+            justify-content: center; margin: 50px 0; height: 50px">Create an Article</a>
+        </div>
+
         {% for article in articles |slice(0, 100) %}
 
 
             <div class="col">
                 <div class="card h-100" style="background-color: #fecea8!important; color: #4A4A4A!important;">
-                    <img src="{{ article.image_url }}" class="card-img-top" style="height: 300px; width: 100%" alt="{{ article.title }}">
+                    <img src="{{ article.image_url }}" class="card-img-top" style="height: 300px; width: 100%; object-fit: cover" alt="{{ article.title }}">
                     <div class="card-body">
                         <a href="/show/{{ article.slug }}"><h5 class="card-title">{{ article.title }}</h5>
                             {% if article.author.profile is defined %}
@@ -25,8 +30,8 @@
                             </p> {% endfor %}
                     </div>
                     <div class="Edit_Delete d-flex justify-content-evenly">
-                        <a class="button" style="max-width: 90px; background-color: #ff5449;" href="{{ path('app_article_edit', {'id': article.id}) }}">Edit</a>
-                        <a class="button" style="max-width: 100px; " href="{{ path('app_article_delete', {'id': article.id}) }}">Delete</a>
+                        <a class="button" style="max-width: 90px; background-color: #ff5449; margin-bottom: 20px" href="{{ path('app_article_edit', {'id': article.id}) }}">Edit</a>
+                        <a class="button d-flex justify-content-center" style="max-width: 100px; margin-bottom: 20px" href="">{{ include('article/_delete_form.html.twig') }}</a>
                     </div>
                 </div>
 

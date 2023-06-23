@@ -5,9 +5,9 @@
 {% block body %}
     <h1 class="d-flex justify-content-center" style="color: #fecea8">Create new Article</h1>
 
-    <section class="vh-90 mt-3 mb-3" style="background-color: #4A4A4A; color:#fecea8!important">
-        <div class="container h-100 d-flex justify-content-between">
-            <div class="mx-1 mx-md-4" style="width:60%">
+    <section class="vh-90 mt-3 mb-3" style="background-color: #4A4A4A; color:#fecea8!important;">
+        <div class="container h-100 d-flex justify-content-between flex-wrap">
+            <div class="mx-1 mx-md-4" style="width:40%">
                 {{ form_start(form) }}
                 <div class="d-flex flex-row align-items-center mb-4">
                     <div class="form-outline flex-fill mb-0">
@@ -25,37 +25,47 @@
                         {{ form_row(form.categories) }}
                     </div>
                 </div>
-                <div class="d-flex flex-row align-items-center mb-4">
-                    <div class="form-outline flex-fill mb-0">
-                        {{ form_row(form.content) }}
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    {{ form_row(form.Add) }}
-                </div>
             </div>
-            {{ form_end(form) }}
+
             <div class="col-md-10 col-lg-6 col-xl-7 d-flex justify-content-end order-1 order-lg-2 " style="max-width: 500px; margin-left: 20px;">
                 <img id="uploadedPhoto" src="/assets/images/logos/Logo-T-Store-Square.png" class="uploadedPhoto img-fluid" alt="Sample image" style="height: fit-content!important;">
             </div>
+
+
+            <div class="col-md-10 col-lg-6 col-xl-7 d-flex justify-content-end order-1 order-lg-2 " style="width: 100%;">
+                <div class="form-outline flex-fill mb-0">
+                    {{ form_row(form.content) }}
+                </div>
+            </div>
+            <div class="col-md-10 col-lg-6 col-xl-7 d-flex justify-content-end order-1 order-lg-2 " style="margin-top: 40px">
+                {{ form_row(form.Add) }}
+            </div>
+            {{ form_end(form) }}
         </div>
     </section>
 
 
-    <a href="{{ path('app_article_index') }}">back to list</a>
+    <a style="color: #fecea8!important;" href="{{ path('app_article_index') }}">Back to my articles.</a>
 {% endblock %}
 
 {% block javascript %}
 <script>
+
+    /* Select2 J-Query plugin to beautify the choice label (https://select2.org/) */
+
     $(document).ready(function() {
     $('.categoryChoices').select2()
 });
+    /* CKEDITOR for adding style to the content area of the article */
 
     CKEDITOR.replace( 'article_content' );
 
 </script>
 
 <script>
+    /* Changing the default/already-uploaded picture for the uploaded picture.
+       Error with } expected, do not modify, is an internal error of the IDE. */
+
     const fileInput = document.getElementById('article_imageFile');
     const existingImage = document.getElementById('uploadedPhoto');
 
@@ -66,11 +76,11 @@
     const reader = new FileReader();
     reader.onload = function() {
     existingImage.src = reader.result;
-};
+    };
 
     reader.readAsDataURL(selectedFile);
-}
-});
+    }
+    });
 
 </script>
 
